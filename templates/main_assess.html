@@ -1,0 +1,27 @@
+{%extends "bar_navigation.html"%}
+{%block content%}
+<br>
+<div class="policyassess">
+  <center><h1> This section will assess your project's compliance with the PDPC requirements </h1></center>
+</div>
+<center>
+<br>
+
+<div id='cssmenu2'>
+  <center>
+    <ul>
+    <li><a href="{{ url_for('assess_protection') }}"><span>Protection Assessement</span></a></li>
+   <li><a href="{{ url_for('assess_access') }}"><span>Access & Correction, Openness & Accuracy Assessment</span></a></li><br>
+   <li><a href="{{ url_for('assess_consent') }}"><span>Consent, Notification and Purpose Assessment</span></a></li>
+   <li><a href="{{ url_for('assess_transfer') }}"><span>Transfer and Retention Assessment</span></a></li>
+
+
+
+
+</ul>
+</center>
+</div>
+
+
+
+{%endblock%}

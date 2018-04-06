@@ -1,0 +1,262 @@
+{%extends "bar_navigation.html"%}
+{%block content%}
+{% autoescape false %}
+<br>
+
+<br>
+<center>
+<div id=cssmenu2>
+  <ul>
+
+  <li font_size=8px><a href="{{ url_for('main_comparison') }}" ><span>Comparison Main Page</span></a></li>
+  <li font_size=8px><a href="{{ url_for('comparison_result') }}"><span>International Comparison Diagnostics </span></a></li>
+
+</ul>
+</div></center>
+
+<div class="home">
+    <center><h1>These are the comparison results you have requested.</h1></center>
+</div>
+<center>
+<p> Personal data definition comparison </p>
+</center>
+<center>
+<table border='1' width='600' id='customers'>
+
+  <tr>
+    <th>Issue</th>
+    <th>{{  countries[0]  }}</th>
+    <th>{{  countries[1]  }}</th>
+  </tr>
+
+  {% for row_index in range(personal_1|length) %}
+      <tr>
+        <td>{{ Personal_data_answers[row_index]  }}</td>
+        <td>{{ personal_1[row_index]  }}</td>
+        <td>{{ personal_2[row_index]  }}</td>
+      </tr>
+  {% endfor %}
+</table>
+<br>
+<p> Sensitive data definition comparison </p>
+
+<center>
+<table border='1' width='600' id='customers'>
+
+  <tr>
+    <th>Issue</th>
+    <th>{{  countries[0]  }}</th>
+    <th>{{  countries[1]  }}</th>
+  </tr>
+
+  {% for row_index in range(sensitive_1|length) %}
+      <tr>
+        <td>{{ Sensitive_data_answers[row_index]  }}</td>
+        <td>{{ sensitive_1[row_index]  }}</td>
+        <td>{{ sensitive_2[row_index]  }}</td>
+      </tr>
+  {% endfor %}
+
+
+</table>
+</center>
+
+<br>
+<p> Data Collection comparison </p>
+
+<center>
+<table border='1' width='600' id='customers'>
+
+  <tr>
+    <th>Issue</th>
+    <th>{{  countries[0]  }}</th>
+    <th>{{  countries[1]  }}</th>
+  </tr>
+
+
+      <tr>
+        <td>Data Minimisation Principle</td>
+        <td>Not stated<br>
+         - Any personal data that is remotely relevant to the purpose can be collected.</td>
+        <td>Yes<br>
+  - Article 5 (3), which stipulates that personal data must be adequate, relevant and limited to what is necessary in relation to the purposes for which they are collected and/or further processed.</td>
+      </tr>
+
+      <tr>
+        <td>Consent Necessity</td>
+        <td>Yes<br>
+          - Section 13, which requires consent to be given before personal data is collected, used or disclosed.<br>
+         - Section 14, which explicitly states that consent that is obtained without first notifying the individual of the purpose(s) is not valid consent, nor is the consent valid if false, misleading or deceptive practices have been utilized.<br>
+         - Section 46, which prohibits an organization from requiring an individual to consent to the collection, use or disclosure of personal data about the individual beyond what is reasonable to provide the product or service to that individual.</td>
+        <td>Yes<br>
+          - Section 32, which requires that consent be given by a clear affirmative act establishing a freely given, specific, informed and unambiguous indication of the data subject's agreement to the processing of personal data relating to him or her, such as by a written statement, including by electronic means, or an oral statement. Silence, pre-ticked boxes or inactivity should not therefore constitute consent. Consent should cover all processing activities carried out for the same purpose or purposes. When the processing has multiple purposes, consent should be given for all of them.<br></td>
+      </tr>
+
+      <tr>
+        <td>Deemed Consent</td>
+        <td>Yes<br>
+          - Section 15, which stipulates that consent can be deemed from an individual if the individual, without actually giving consent, voluntarily provides the personal data to the organization for that purpose, and it is reasonable that the individual would voluntarily provide the data.</td>
+        <td>No<br>
+          - Article 4, which prohibits the concept of deemed consent at all; the basis for the processing of personal data based on consent requires the consent to be unambiguous, explicit, expressed and be freely given.</td>
+      </tr>
+
+      <tr>
+        <td>Consent Exemptions</td>
+        <td>Yes<br>
+          - Section 17(1), which stipulates that personal data can be collected without consent in the circumstances set out in the Second Schedule.<br>
+         - Section 17(2) and s 17(3) similarly provides that personal data can be used and disclosed without consent in the circumstances set out in the Third and Fourth Schedules respectively.<br>
+         - Examples include if the personal data is publicly available, if the use is necessary for evaluative purposes, or if the personal data is collected solely for artistic or literary purposes.</td>
+        <td>No<br>
+          - Article 7, which stipulates that where processing is based on consent, the controller shall be able to demonstrate that the data subject has consented to processing of his or her personal data.<br>
+          - Article 6, which provides that processing shall be lawful only if and to the extent that at least one of the 6 stated criteria outlined applies.</td>
+      </tr>
+
+      <tr>
+        <td>Age Threshold of Consent</td>
+        <td>Not stated</td>
+        <td>Yes<br>
+          - Article 8, which stipulates that consent must be given by someone with the legal capacity to do so. The GDPR sets a threshold of 16 years of age for consent; although, this can be lowered by individual countries to between 13 and 16 years of age.</td>
+      </tr>
+
+      <tr>
+        <td>Basis for Test of Purpose</td>
+        <td>Not stated<br>
+         - Section 18, which requires a test of<b> reasonableness</b>  in some instances and in others, merely a test of the appropriateness of the purpose as judged by a reasonable person.<br> - Section 15 also states that the purposes need not be specified nor explicit in the case of deemed consent.</td>
+        <td>Yes<br>
+          - Article 5 (2), which requires that personal data is collected for specified, explicit and<b> legitimate</b>   purposes and not further processed in a manner that is incompatible with those purposes.</td>
+      </tr>
+
+      <tr>
+        <td>Accuracy and Completeness Obligation</td>
+        <td>Not stated<br>
+          - Section 23, which stipulates that organizations make a reasonable effort to ensure that personal data collected by or on behalf of the organization is accurate and complete. However, this “reasonable effort” required is not an absolute requirement as organizations are only required to do this if the personal data is likely to be used by the organization to make a decision that affects the individual to whom the personal data relates or if it is likely to be disclosed by the organization to another organization.</td>
+        <td>Yes<br>
+          - Article 5 (4), which stipulates that personal data that is processed should be accurate and, where necessary, kept up to date.</td>
+      </tr>
+
+</table>
+</center>
+
+
+<br>
+<p> Transfer Limitation and Access Obligations comparison </p>
+
+<center>
+<table border='1' width='600' id='customers'>
+
+  <tr>
+    <th>Issue</th>
+    <th>{{  countries[0]  }}</th>
+    <th>{{  countries[1]  }}</th>
+  </tr>
+
+
+      <tr>
+        <td>Transfer Limitation Obligation</td>
+        <td>Yes<br>
+  - Section 26, which stipulates that an organisation shall not transfer any personal data to a country or territory outside Singapore except in accordance with requirements prescribed under this Act to ensure that organisations provide a standard of protection to personal data so transferred that is comparable to the protection under this Act.</td>
+ <td> Yes<br>
+  -  Chapter V on Transfer of personal data to third countries or international organisations<br>
+- Article 44, which stipulates that any transfer of personal data which are undergoing processing or are intended for processing after transfer to a third country or to an international organisation shall take place only if, subject to the other provisions of this Regulation, the conditions laid down in this Chapter are complied with by the controller and processor, including for onward transfers of personal data from the third country or an international organisation to another third country or to another international organisation. All provisions in this Chapter shall be applied in order to ensure that the level of protection of natural persons guaranteed by this Regulation is not undermined.</td>
+</tr>
+
+
+
+<tr>
+  <td>Transfer of Personal Data</td>
+      <td>No, unless the overseas organisation provides a standard of protection to personal data so transferred that is comparable to the protection under the PDPA. <br>
+ - Section 26</td>
+      <td>No, unless the Commission has decided that the third country ensures an adequate level of protection or the controller or processor has provided appropriate safeguards and enforceable data subject rights and effective legal remedies for data subjects are available. <br>
+ - Articles 45 and 46<br></td>
+      </tr>
+
+
+
+      <tr>
+        <td>Transfer of Sensitive Personal Data</td>
+        <td>No <br>
+ - Section 26 prohibits the transfer of personal data abroad unless certain conditions are met. <br>
+Hence, the export of sensitive personal data would likely be prohibited as well.</td></td>
+        <td>No <br>
+ - Articles 45 and 46 prohibit the transfer of personal data abroad unless certain conditions are met.<br>
+Hence, the export of sensitive personal data would likely be prohibited as well.
+      </tr>
+
+      <tr>
+        <td>Access and Correction</td>
+        <td>Yes but limited in nature<br>
+ - Section 21, which allows an individual to request access to personal data held by an organization and to information concerning its use or disclosure in the preceding one year.<br>
+ - Note: This right to request access is, however, subject to many exceptions outlined under subsections (2), (3) and (4) and in respect of the matters specified in the Fifth Schedule.<br>
+ -Section 22, which grants a right to request corrections in the personal data held by an organization that is due to error or omission. However, organizations can, on reasonable grounds, choose not to correct the data.<br>
+ Subsection (5) states that should organizations decide against correction, then the personal data should be annotated with the correction that was requested but not made.<br>
+ - Note: This right to request access is, however, subject to many exceptions outlined under subsections (2), (3), (4), (6), (7) and in respect of the matters specified in the Sixth Schedule.<br></td>
+        <td>Yes<br>
+  - Section 3 on 'Rectification and Erasure', provides for extensive provisions allowing data subjects to access and correct their personal data.<br>
+ - Article 16, which stipulates that the data subject shall have the right to obtain from the controller without undue delay the rectification of inaccurate personal data concerning him or her .<br>
+ - Article 18. which allows for the right to restriction of processing under 4 stated conditions.<br>
+ - Article 20, which provides for the right to data portability.<br></td>
+      </tr>
+
+      <tr>
+        <td>Age Threshold of Consent</td>
+        <td>Not stated</td>
+        <td>Yes<br>
+  - Article 8, which stipulates that consent must be given by someone with the legal capacity to do so. The GDPR sets a threshold of 16 years of age for consent; although, this can be lowered by individual countries to between 13 and 16 years of age.</td>
+      </tr>
+
+      <tr>
+        <td>Erasure of Personal Data</td>
+        <td>Limited in scope and certainly<br>
+ - Section 25, which stipulates the destroy or deidentify of personal data when there are no longer any legal or business and any other purpose for the retention of the personal data.<br></td>
+        <td>Yes<br>
+  - Article 17, which stipulates that the data subject shall have the right to obtain from the controller the erasure of personal data concerning him or her without undue delay and the controller shall have the obligation to erase personal data without undue delay where one of the stated 6 grounds applies.</td>
+      </tr>
+
+      <tr>
+        <td>Notification Obligation on Correction or Rectification/td>
+        <td>Not stated</td>
+        <td>Yes<br>
+  - Article 19, which stipulates that the controller shall communicate any rectification or erasure of personal data or restriction of processing carried out in accordance with Articles 16, 17(1) and 18 to each recipient to whom the personal data have been disclosed, unless this proves impossible or involves disproportionate effort. The controller shall inform the data subject about those recipients if the data subject requests it.</td>
+      </tr>
+
+</table>
+</center>
+
+
+<br>
+<p> Protection Obligation definition comparison </p>
+
+<center>
+<table border='1' width='600' id='customers'>
+
+  <tr>
+    <th>Issue</th>
+    <th>{{  countries[0]  }}</th>
+    <th>{{  countries[1]  }}</th>
+  </tr>
+
+      <tr>
+        <td>Protection Obligation</td>
+        <td>Yes<br>
+  - Section 24, which requires Organizations to protect personal data in its possession or under its control by making reasonable security arrangements to prevent unauthorized access, collection, use, disclosure, copying, modification, disposal or similar risks.</td>
+        <td>Yes<br>
+  - Article 5 (4), which stipulates that personal data shall be processed lawfully, fairly and in a transparent manner in relation to the data subject, and requires the controller to be responsible for, and be able to demonstrate compliance with  (‘accountability’) with the stated.</td>
+      </tr>
+
+      <tr>
+        <td>Obligation to Report Data Breaches</td>
+        <td>Recommended but not mandatory<br>
+  - PDPC's Guide to Managing Data Breaches, which strongly recommend data breaches to be reported, and sets out in great detail the kinds of information to be reported, the frequency and expected timelines</td>
+        <td>Yes, mandatory<br>
+  - Article 33, which stipulates mandatory notification of a personal data breach to the supervisory authority.<br>
+- Article 34, which stipulates mandatory communication of a personal data breach to the data subject.</td>
+      </tr>
+</table>
+</center>
+
+
+
+
+
+{% endautoescape %}
+{%endblock%}

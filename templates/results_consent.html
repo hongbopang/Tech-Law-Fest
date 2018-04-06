@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+<title>Risecure</title>  <!-- import plugin script -->   <script src='static/Chart.min.js'></script>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+
+</head>
+
+  <body>
+    <center><b><div id=cssmenu>
+    <ul>
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('main_assess') }}">Risk Assessments</a></li>
+      <li><a href="{{ url_for('main_analysis') }}">Risk Analysis</a></li>
+      <li><a href="{{ url_for('main_comparison') }}">International Comparison</a></li>
+  </ul>
+  </div></center></b>
+  <br><center>
+  <div id=cssmenu2>
+    <ul>
+
+      <li><a href="{{ url_for('main_analysis') }}"><span> Overall Risk Analysis</span></a></li>
+      <li><a href="{{ url_for('results_protection') }}"><span>Protection</span></a></li>
+      <li><a href="{{ url_for('results_access') }}"><span>Access & Correction</span></a></li>
+      <li><a href="{{ url_for('results_openness') }}"><span>Openness</span></a></li>
+      <li><a href="{{ url_for('results_accuracy') }}"><span>Accuracy</span></a></li>
+      <li><a href="{{ url_for('results_consent') }}"><span>Consent</span></a></li>
+      <li><a href="{{ url_for('results_notification') }}"><span>Notification</span></a></li>
+      <li><a href="{{ url_for('results_purpose') }}"><span>Purpose</span></a></li>
+      <li><a href="{{ url_for('results_transfer') }}"><span>Transfer</span></a></li>
+      <li><a href="{{ url_for('results_retention') }}"><span>Retention</span></a></li>
+  </ul>
+  </div></center>
+
+<div>
+<script src='static/Chart.min.js'></script>
+
+<!--insert the button code here -->
+<script>
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+</script>
+<center>
+<p> You are <b> {{ percent_overall_protection }}% Compliant </b> with the Consent Obligation.</p></center>
+<center>
+<canvas id="chart" width="400" height="200"></canvas>
+<script>
+// Global parameters:
+// do not resize the chart canvas when its container does (keep at 600x400px)
+var pieData = [
+         {% for item,label,colors in set %}
+             {
+                 value: {{item}},
+                 label: "{{label}}",
+                 color : "{{colors}}"
+             },
+             {% endfor %}
+
+
+      ];
+
+// get bar chart canvas
+var mychart = document.getElementById("chart").getContext("2d");
+
+steps = 10
+max = 10
+// draw pie chart
+new Chart(document.getElementById("chart").getContext("2d")).Doughnut(pieData);
+</script>
+</center>
+
+<br>
+
+{% if total_liability !=0 %}
+
+  <center><p>Your potential monetary liability for breaching the Consent Obligation is: <b>${{total_liability}}</b>.</p>
+  <button onclick="myFunction()">Show Breakdown</button>
+  <br>
+  <div id="myDIV">
+  <center>
+    <table border='1' width='600' >
+  <tr>
+    <th>Legal Precedent</th>
+    <th>Potential Liability</th>
+
+  </tr>
+  {% autoescape false %}
+  {% for row_index in range(test1_lia|length) %}
+      <tr>
+        <td>{{ test1_moneylia[row_index]  }}</td>
+        <td>${{ test1_lia[row_index]  }}</td>
+
+      </tr>
+  {% endfor %}
+  {% endautoescape  %}
+  </table>
+  </center>
+  </div>
+{% endif %}
+<br>
+<center>
+These are the recommendations for your firm:
+</center><br>
+<br>
+<center>
+<table border='1' width='600' id='customers'>
+
+  <tr>
+    <th> Issue   </th>
+    <th> Recommendations </th>
+  </tr>
+{% autoescape false %}
+  {% for row_index in range(test1_qns|length) %}
+      <tr>
+
+        <td>{{ test1_qns[row_index]  }}</td>
+        <td>{{ test1_rec[row_index]  }}</td>
+      </tr>
+  {% endfor %}
+{% endautoescape %}
+
+</table>
+</center>
+
+
+
+  </table>
+  </center>
+  </body></html>

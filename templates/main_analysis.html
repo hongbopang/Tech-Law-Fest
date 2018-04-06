@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+<title>Risecure</title>  <!-- import plugin script -->   <script src='../static/Chart.min.js'></script>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+
+  <style>
+  #customers {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 80%;
+  }
+
+  #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+  }
+
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+  #customers tr:hover {background-color: #ddd;}
+
+  #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+  }
+</style>
+
+</head>
+
+  <body>
+
+    <center><div id=cssmenu>
+    <ul>
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('main_assess') }}">Risk Assessments</a></li>
+      <li><a href="{{ url_for('main_analysis') }}">Risk Analysis</a></li>
+      <li><a href="{{ url_for('main_comparison') }}">International Comparison</a></li>
+  </ul>
+</div></center>
+
+<br>
+
+<script src='static/Chart.min.js'></script>
+
+
+<div id='cssmenu2'><center>
+<ul>
+
+  <li><a href="{{ url_for('main_analysis') }}"><span> Overall Risk Analysis</span></a></li>
+  <li><a href="{{ url_for('results_protection') }}"><span>Protection</span></a></li>
+  <li><a href="{{ url_for('results_access') }}"><span>Access & Correction</span></a></li>
+  <li><a href="{{ url_for('results_openness') }}"><span>Openness</span></a></li>
+  <li><a href="{{ url_for('results_accuracy') }}"><span>Accuracy</span></a></li>
+  <li><a href="{{ url_for('results_consent') }}"><span>Consent</span></a></li>
+  <li><a href="{{ url_for('results_notification') }}"><span>Notification</span></a></li>
+  <li><a href="{{ url_for('results_purpose') }}"><span>Purpose</span></a></li>
+  <li><a href="{{ url_for('results_transfer') }}"><span>Transfer</span></a></li>
+  <li><a href="{{ url_for('results_retention') }}"><span>Retention</span></a></li>
+
+
+</ul></center>
+</div>
+
+
+<center>
+<p> Overall, you are <b> {{ total_compliance }}% Compliant</b>.</p>
+
+
+<p> Please view the individual sections to see the risk analysis for each individual obligations as well as specific recommendations how to improve your project.</p></center>
+<center>
+<canvas id="chart" width="400" height="200"></canvas>
+<script>
+
+var pieData = [
+         {% for item,label,colors in main_graph %}
+             {
+                 value: {{item}},
+                 label: "{{label}}",
+                 color : "{{colors}}"
+             },
+             {% endfor %}
+
+
+      ];
+
+// get bar chart canvas
+var mychart = document.getElementById("chart").getContext("2d");
+
+steps = 10
+max = 10
+// draw pie chart
+new Chart(document.getElementById("chart").getContext("2d")).Doughnut(pieData);
+</script>
+</center>
+
+
+<br>
+
+</body></html>
